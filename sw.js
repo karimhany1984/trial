@@ -1,5 +1,5 @@
-const CACHE_NAME = 'hospital-form-dynamic-v1';
-const BASE = 'https://karimhany1984.github.io/hospital-form/';
+const CACHE_NAME = 'trial-dynamic-v1';
+const BASE = 'https://karimhany1984.github.io/trial/';
 
 // Files that MUST be available offline immediately
 const PRE_CACHE_ASSETS = [
