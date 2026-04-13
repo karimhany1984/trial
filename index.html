@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="إدارة متابعة المديريات">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a6faf">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<title>نموذج متابعة المستشفيات</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="installBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#e8f2fb; padding:15px 16px; padding-bottom: calc(15px + env(safe-area-inset-bottom)); border-top:2px solid #1a6faf; text-align:center; z-index:9999; box-shadow:0 -2px 12px rgba(0,0,0,0.15);">
+        <p style="margin:0 0 10px 0; font-weight:bold; font-size:14px;">📲 ثبّت التطبيق على جهازك للعمل بدون إنترنت</p>
+        <button id="btnInstall" style="background:#1a6faf; color:white; border:none; padding:10px 24px; border-radius:8px; cursor:pointer; font-size:14px; font-weight:bold;">تثبيت الآن</button>
+        <button id="btnCancel" style="background:transparent; color:#666; border:1px solid #ccc; padding:10px 16px; border-radius:8px; cursor:pointer; font-size:13px; margin-right:10px;">ليس الآن</button>
+    </div>
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="header-logo">
+            <div class="icon">🏥</div>
+            <div class="header-titles">
+                <div class="t1">نموذج متابعة المستشفيات</div>
+                <div class="t2">مديرية الشئون الصحية بالاسكندرية - إدارة متابعة المديريات</div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="hbtn hbtn-ghost hbtn-desktop" id="openFileBtn">
+                <span class="icon-sm">📂</span> فتح ملف
+            </button>
+            <button class="hbtn hbtn-ghost hbtn-desktop" id="saveLocalBtn">
+                <span class="icon-sm">💾</span> حفظ
+            </button>
+            <button class="hbtn hbtn-accent" id="exportExcelBtn">
+                <span class="icon-sm">📥</span> <span class="hbtn-desktop">تصدير Excel</span><span class="hbtn-mobile">تصدير</span>
+            </button>
+        </div>
+    </header>
+    <div class="sidebar-overlay"></div>
+
+    <!-- PROGRESS BAR -->
+    <div class="global-progress">
+        <div class="global-progress-fill" id="gProgressFill" style="width:0%"></div>
+    </div>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- LAYOUT -->
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-head">
+                <h3>أقسام النموذج</h3>
+                <div class="sidebar-total">
+                    <span class="score-big" id="sbTotalScore">0</span>
+                    <span class="score-max">/ 1174 نقطة</span>
+                    <span class="pct-badge" id="sbTotalPct">0%</span>
+                </div>
+            </div>
+            <div class="sidebar-inner" id="sidebarNav"></div>
+        </nav>
+
+        <!-- Main -->
+        <main class="main-content" id="mainContent"></main>
+    </div>
+
+    <!-- MOBILE BOTTOM NAV -->
+    <nav class="mobile-nav">
+        <button class="mobile-nav-btn" id="mnHome">
+            <span class="mn-icon">🏠</span>
+            <span class="mn-label">الرئيسية</span>
+        </button>
+        <button class="mobile-nav-btn" id="mnNav">
+            <span class="mn-icon">☰</span>
+            <span class="mn-label">الأقسام</span>
+        </button>
+        <button class="mobile-nav-btn" id="mnSave">
+            <span class="mn-icon">💾</span>
+            <span class="mn-label">حفظ</span>
+        </button>
+        <button class="mobile-nav-btn" id="mnSummary">
+            <span class="mn-icon">📈</span>
+            <span class="mn-label">الملخص</span>
+        </button>
+    </nav>
+
+    <!-- MODAL -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <h3 id="modalTitle"></h3>
+            <p id="modalBody"></p>
+            <div class="modal-btns">
+                <button class="btn btn-danger" id="modalConfirm">تأكيد</button>
+                <button class="btn btn-ghost" id="modalCancel">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- HIDDEN FILE INPUT -->
+    <input type="file" id="fileInput" accept=".xlsx,.xls">
+
+    <script src="questions.json"></script>
+    <script src="app.js"></script>
+</body>
+</html>
