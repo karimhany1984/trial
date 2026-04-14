@@ -1389,7 +1389,24 @@ button, .nav-item, .nav-card, .qa-btn, .sec-nav-btn, .mobile-nav-btn, .hbtn {
                     else if (sc === 1) rowClass = 'scored-1';
                     else if (sc === 2) rowClass = 'scored-2';
                     else if (sc === 'NA') rowClass = 'scored-na';
+ // Determine if this item is binary-only
+                    const isBinary = item.binaryOnly === true;
 
+                    subsHtml += `
+          <div class="item-row ${rowClass}" id="irow-${ik}">
+            <div class="item-num">${item.num}</div>
+            <div class="item-text">${esc(item.text)}</div>
+            <div class="item-controls">
+              <button class="sbtn ${sc === 0 ? 's0' : ''}" onclick="setScore('${ik}', 0, '${key}')">0</button>
+              ${isBinary
+                            ? `<button class="sbtn-disabled" disabled>1</button>`
+                            : `<button class="sbtn ${sc === 1 ? 's1' : ''}" onclick="setScore('${ik}', 1, '${key}')">1</button>`
+                        }
+              <button class="sbtn ${sc === 2 ? 's2' : ''}" onclick="setScore('${ik}', 2, '${key}')">2</button>
+              <button class="sbtn ${sc === 'NA' ? 'sna' : ''}" onclick="setScore('${ik}', 'NA', '${key}')">NA</button>
+              <button class="nbtn ${hasNote ? 'has-note' : ''}" id="nbtn-${ik}" onclick="toggleNote('${ik}')">📝</button>
+            </div>
+          </div>
             
           <div class="note-area ${hasNote ? 'open' : ''}" id="note-${ik}">
             <textarea id="note-text-${ik}" name="note_${ik}" placeholder="ملاحظة..." oninput="setNote('${ik}', this.value)">${esc(notes[ik] || '')}</textarea>
