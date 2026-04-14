@@ -3,7 +3,7 @@ const BASE = 'https://karimhany1984.github.io/hospital-form/';
 
 // Files that MUST be available offline immediately
 const PRE_CACHE_ASSETS = [
-    BASE + '1.html',
+    BASE + 'index.html',
     BASE + 'manifest.json',
     BASE + 'icon.png'
 ];
@@ -52,7 +52,7 @@ self.addEventListener('fetch', e => {
                     // If the specific page isn't found (like a broken link), 
                     // default to the main form form
                     if (e.request.mode === 'navigate') {
-                        return caches.match('1.html');
+                        return caches.match('index.html');
                     }
                 });
             })
